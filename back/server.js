@@ -20,12 +20,12 @@ app.use(express.json());
   returns a JSON array of Todo Objects
 */
 app.get('/getAllTodos', (req, res) => {
-  songs = db.getAllSongs((err, todos) => {
+  todos = db.getAllTodos((err, todos) => {
     if(err) {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.json(songs);
+      res.json(todos);
     }
   });
 });
