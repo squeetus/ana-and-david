@@ -25,7 +25,7 @@ let seedCommand = `
 
 let params = {
   host     : process.env.CLEARDB_HOST || 'localhost',
-  user     : process.env.CLEARDB_USER || 'listtest',
+  user     : process.env.CLEARDB_USER || 'todotest',
   password : process.env.CLEARDB_PASS || 'test',
   multipleStatements: true,
   dateStrings: true,
@@ -93,7 +93,7 @@ exports.addTodo = (todo, cb) => {
   pool.getConnection(function(error, connection) {
     connection.execute(
       "INSERT INTO todo (what, category, who, done, created) VALUES (?, ?, ?, ?)",
-      [todo.what, todo.category, todo.who, 'N', new Date(song.release_date)],
+      [todo.what, todo.category, todo.who, 'N', new Date(todo.created)],
       (err, result) => cb(err, result)
     );
     connection.release();
