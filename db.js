@@ -20,7 +20,7 @@ let createCommand = `
 let seedCommand = `
   INSERT INTO todo (what, category, who, done, whence, created)
   VALUES
-    ('Wish Ana happy birthday!', 'todo', 'David', 'N', Date("2021-09-09 00:01:01"), Date("`+new Date().toJSON().slice(0, 19).replace('T', ' ')+`"))
+    ('Wish Ana happy birthday!', 'todo', 'David', 'N', '2021-09-09 00:01:01','`+new Date().toISOString().slice(0, 19).replace('T', ' ')+`')
   ;
   `
 
@@ -94,7 +94,7 @@ exports.addTodo = (todo, cb) => {
   pool.getConnection(function(error, connection) {
     connection.execute(
       "INSERT INTO todo (what, category, who, whence, done, created) VALUES (?, ?, ?, ?, ?, ?)",
-      [todo.what, todo.category, todo.who, todo.whence, todo.done, new Date()],
+      [todo.what, todo.category, todo.who, todo.whence, todo.done, new Date().toISOString().slice(0, 19).replace('T', ' ')],
       (err, result) => cb(err, result)
     );
     connection.release();
@@ -109,13 +109,23 @@ exports.addTodo = (todo, cb) => {
 exports.markDone = (todo, cb) => {
   pool.getConnection(function(error, connection) {
     connection.execute(
-      "UPDATE todo SET done=\'Y\' WHERE id=?",
-      [todo.id],
+      "UPDATE todo SET done=? WHERE id=?",
+      [invert(todo.done.toUpperCase()), todo.id],
       (err, result) => cb(err, result)
     );
     connection.release();
     if (error) throw error;
   });
+}
+
+function invert(done) {
+  if(done == 'Y') {
+    return 'N';
+  } else if(done == 'N') {
+    return 'Y';
+  } else {
+    return 'X';
+  }
 }
 
 // /*
