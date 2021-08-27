@@ -28,7 +28,7 @@ export class TodoService {
   }
 
   // put updates for a todo to the back end
-  public markDone(todo: Todo): Observable<Response> {
+  public toggleDone(todo: Todo): Observable<Response> {
     return this.http.put<Response>(`${this.apiServerUrl}/markDone`, todo);
   }
 }

@@ -101,6 +101,26 @@ export class AppComponent {
       );
   }
 
+  public toggleDone(todo: Todo): void {
+    this.todoService.toggleDone(todo).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.addAlert.next({
+          type: 'success',
+          message: res.message,
+        });
+        this.getTodos();
+      },
+      (err: HttpErrorResponse) => {
+        console.warn(err.message);
+        this.addAlert.next({
+          type: 'danger',
+          message: err.message,
+        });
+      }
+    );
+  }
+
   // pass a new todo for the todo service to add
   public addTodo(todo: Todo): void {
     this.todoService.addTodo(todo).subscribe(
@@ -123,26 +143,26 @@ export class AppComponent {
   }
 
   // pass a song for the song service to update
-  public updateTodo(todo: Todo): void {
-    console.log(todo);
-    this.todoService.markDone(todo).subscribe(
-      (res: any) => {
-        console.log(res);
-        this.addAlert.next({
-          type: 'success',
-          message: res.message,
-        });
-        this.getTodos();
-      },
-      (err: HttpErrorResponse) => {
-        console.warn(err.message);
-        this.addAlert.next({
-          type: 'danger',
-          message: err.message,
-        });
-      }
-    );
-  }
+  // public updateTodo(todo: Todo): void {
+  //   console.log(todo);
+  //   this.todoService.markDone(todo).subscribe(
+  //     (res: any) => {
+  //       console.log(res);
+  //       this.addAlert.next({
+  //         type: 'success',
+  //         message: res.message,
+  //       });
+  //       this.getTodos();
+  //     },
+  //     (err: HttpErrorResponse) => {
+  //       console.warn(err.message);
+  //       this.addAlert.next({
+  //         type: 'danger',
+  //         message: err.message,
+  //       });
+  //     }
+  //   );
+  // }
   //
   // // limit the rate of fire for filter updates
   // public doFilter = this.throttle(() => this.filter());

@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { DeleteModalComponent } from './song-modal/delete-modal.component';
 // import { UpdateModalComponent } from './song-modal/update-modal.component';
 import { AddModalComponent } from './todo-modal/add-modal.component';
+import { DoneModalComponent } from './todo-modal/done-modal.component';
 // import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertsComponent } from './alerts/alerts.component';
@@ -20,6 +21,7 @@ import { AlertsComponent } from './alerts/alerts.component';
     // DeleteModalComponent,
     // UpdateModalComponent,
     AddModalComponent,
+    DoneModalComponent,
     AlertsComponent
   ],
   imports: [
