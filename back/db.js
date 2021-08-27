@@ -12,7 +12,7 @@ let createCommand = `
     category varchar(100) NOT NULL,
     who varchar(100) NOT NULL,
     done varchar(1) NOT NULL,
-    whence DATETIME NOT NULL,
+    whence DATETIME,
     created DATETIME NOT NULL
   );
   `
