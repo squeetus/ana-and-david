@@ -70,7 +70,7 @@ app.put('/markDone', (req, res) => {
 app.get('*', (req, res) => {
   res.statusCode = 200;
   res.setHeader('content-type', 'text/plain');
-  res.end("David is hot, Ana is hotter; she likes him somewhat, he likes her a lotter");
+  res.end("David is hot, Ana is hotter; she likes him a lot, he likes her a lotter");
 });
 
 app.listen(port, () => {
