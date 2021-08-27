@@ -54,7 +54,7 @@
               <label for="whence">Whence</label>
               <input type="date" name="whence" class="form-control" formControlName="whence" id="whence" placeholder="01/01/2022">
               <span class="text-danger"
-                  *ngIf="(todoFormControl.whence.touched && todoFormControl.whence.dirty && todoFormControl.whence.hasError('invalidDate'))">
+                  *ngIf="(todoFormControl.whence.dirty && todoFormControl.whence.hasError('invalidDate'))">
                   Unless this happens infinitely, please specify whence
               </span>
             </div>
