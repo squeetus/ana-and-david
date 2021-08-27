@@ -18,7 +18,7 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent {
   titles = ['Hey', 'POTATO QUEEN', 'MAISIE, NO!', 'Maisie. Why.', 'mmmm.', 'MMMMMMM.', 'Aspen. Sit. Sit. Sit.', 'Bartender? Another.', 'Salmon King', 'TODO LIST', 'Again and again and again..']
-  title = titles[Math.floor(Math.random() * titles.length)];
+  title = this.titles[Math.floor(Math.random() * this.titles.length)];
 
   // allTodos will keep track of the master list
   public allTodos: Todo[] = [];

@@ -22,7 +22,7 @@ export class AddModalComponent {
     this.todoForm = this.fb.group({
       id: '',
       what: ['', [Validators.required, Validators.maxLength(255)]],
-      category: ['', [Validators.required, Validators.maxLength(100)]],
+      category: ['', [Validators.required, Validators.maxLength(1)]],
       who: ['', [Validators.required, Validators.maxLength(100)]],
       whence: ['', [Validators.required, CustomValidators.todoDate]],
       done: ['N', [Validators.required, Validators.maxLength(1), CustomValidators.yOrN]]
