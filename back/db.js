@@ -12,14 +12,15 @@ let createCommand = `
     category varchar(100) NOT NULL,
     who varchar(100) NOT NULL,
     done varchar(1) NOT NULL,
-    created DATE NOT NULL
+    whence DATETIME NOT NULL,
+    created DATETIME NOT NULL
   );
   `
 
 let seedCommand = `
-  INSERT INTO todo (what, category, who, done, created)
+  INSERT INTO todo (what, category, who, done, whence, created)
   VALUES
-    ('Wish Ana happy birthday!', 'todo', 'David', 'N', Date("2021-09-09"))
+    ('Wish Ana happy birthday!', 'todo', 'David', 'N', Date("2021-09-09 00:01:01"), Date("`+new Date().toJSON().slice(0, 19).replace('T', ' ')+`"))
   ;
   `
 
@@ -47,7 +48,7 @@ if(process.env.CLEARDB_DATABASE_URL) {
 
   /*
     Connect to the database described in the params
-    Run commands to drop/create the song table and seed song data
+    Run commands to drop/create the table and seed data
   */
   exports.connect = () => {
     connection = mysql.createConnection(params);
@@ -92,8 +93,8 @@ exports.getAllTodos = (cb) => {
 exports.addTodo = (todo, cb) => {
   pool.getConnection(function(error, connection) {
     connection.execute(
-      "INSERT INTO todo (what, category, who, done, created) VALUES (?, ?, ?, ?)",
-      [todo.what, todo.category, todo.who, 'N', new Date(todo.created)],
+      "INSERT INTO todo (what, category, who, whence, done, created) VALUES (?, ?, ?, ?, ?, ?)",
+      [todo.what, todo.category, todo.who, todo.whence, todo.done, new Date()],
       (err, result) => cb(err, result)
     );
     connection.release();

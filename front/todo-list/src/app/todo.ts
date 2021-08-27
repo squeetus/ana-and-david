@@ -4,5 +4,6 @@ export interface Todo {
   category: string;
   who: string;
   done: string;
+  whence: string;
   created: string;
 }

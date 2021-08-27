@@ -1,5 +1,5 @@
 import { Input, Output, EventEmitter, Component, TemplateRef, ViewChild } from '@angular/core';
-import { Song } from '../song';
+import { Todo } from '../todo';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from './custom-validators';
@@ -9,33 +9,34 @@ import { CustomValidators } from './custom-validators';
   templateUrl: './add-modal.component.html'
 })
 export class AddModalComponent {
-  public songForm: FormGroup;
+  public todoForm: FormGroup;
 
   closeResult?: string;
 
-  @Input() song!: Song;
-  @Output() addSong = new EventEmitter<Song>();
+  @Input() todo!: Todo;
+  @Output() addTodo = new EventEmitter<Todo>();
   @ViewChild('addModal') addModal!: TemplateRef<any>;
 
-  // set the structure and validators for the song form
+  // set the structure and validators for the todo form
   constructor(private modalService: NgbModal, public fb: FormBuilder) {
-    this.songForm = this.fb.group({
+    this.todoForm = this.fb.group({
       id: '',
-      title: ['', [Validators.required, Validators.maxLength(100)]],
-      artist: ['', [Validators.required, Validators.maxLength(100)]],
-      release_date: ['', [Validators.required, CustomValidators.songDate]],
-      price: ['', [Validators.required, Validators.min(0), Validators.max(1000000)]]
+      what: ['', [Validators.required, Validators.maxLength(255)]],
+      category: ['', [Validators.required, Validators.maxLength(100)]],
+      who: ['', [Validators.required, Validators.maxLength(100)]],
+      whence: ['', [Validators.required, CustomValidators.todoDate]],
+      done: ['N', [Validators.required, Validators.maxLength(1), CustomValidators.yOrN]]
     });
   }
 
   // reset the reactive form
   resetForm(): void {
-    this.songForm.reset();
+    this.todoForm.reset();
   }
 
   // expose controls for reactive validation
-  get songFormControl() {
-    return this.songForm.controls;
+  get todoFormControl() {
+    return this.todoForm.controls;
   }
 
   // handle the add modal
@@ -45,10 +46,10 @@ export class AddModalComponent {
     this.modalService.open(addModal).result.then((result) => {
       this.closeResult = result;
 
-      // make sure the Song form is valid
-      if(this.songForm.valid) {
-        // pass the song values to the parent module to add
-        this.addSong.emit(this.songForm.value);
+      // make sure the Todo form is valid
+      if(this.todoForm.valid) {
+        // pass the todo values to the parent module to add
+        this.addTodo.emit(this.todoForm.value);
 
         // reset the form for the next add action
         this.resetForm();
@@ -59,7 +60,7 @@ export class AddModalComponent {
 
       // reset the form if cancel button pressed
       if(reason == 'No add')
-        this.songForm.reset();
+        this.todoForm.reset();
     });
   }
 }

@@ -42,7 +42,7 @@ export class AppComponent {
     mat-table options
   */
   // configure mat-table column bindings
-  public todoAttributes: string[] = ['What', 'Category', 'Whomst', 'Done?', 'Created'];
+  public todoAttributes: string[] = ['what', 'category', 'who', 'whence', 'done', 'created'];
   // prepare the data source for mat-table
   public dataSource =  new MatTableDataSource<Todo>();
   // declare sorting functionality for the table rows

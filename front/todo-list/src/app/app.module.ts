@@ -9,7 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { DeleteModalComponent } from './song-modal/delete-modal.component';
 // import { UpdateModalComponent } from './song-modal/update-modal.component';
-// import { AddModalComponent } from './song-modal/add-modal.component';
+import { AddModalComponent } from './todo-modal/add-modal.component';
 // import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertsComponent } from './alerts/alerts.component';
@@ -19,7 +19,7 @@ import { AlertsComponent } from './alerts/alerts.component';
     AppComponent,
     // DeleteModalComponent,
     // UpdateModalComponent,
-    // AddModalComponent,
+    AddModalComponent,
     AlertsComponent
   ],
   imports: [
