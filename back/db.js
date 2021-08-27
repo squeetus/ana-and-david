@@ -53,15 +53,17 @@ if(process.env.CLEARDB_DATABASE_URL) {
   exports.connect = () => {
     connection = mysql.createConnection(params);
 
-    connection.query(createCommand, (err, result) => {
-      if(err) throw('unable to execute query: ' + err.stack);
-      console.log('table created');
-    });
+    if(!process.env.RESEED || process.env.RESEED == 'true') {
+      connection.query(createCommand, (err, result) => {
+        if(err) throw('unable to execute query: ' + err.stack);
+        console.log('table created');
+      });
 
-    connection.query(seedCommand, (err, result) => {
-      if(err) throw('unable to execute query: ' + err.stack);
-      console.log('todos seeded');
-    });
+      connection.query(seedCommand, (err, result) => {
+        if(err) throw('unable to execute query: ' + err.stack);
+        console.log('todos seeded');
+      });
+    }
 
     connection.on('error', (err) => {
       console.log('connection error:', err);
