@@ -14,6 +14,7 @@ import { DoneModalComponent } from './todo-modal/done-modal.component';
 // import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertsComponent } from './alerts/alerts.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AlertsComponent } from './alerts/alerts.component';
     NoopAnimationsModule,
     MatTableModule,
     MatSortModule,
+    MatSelectModule,
     NgbModule,
     // NgxSliderModule,
     FontAwesomeModule

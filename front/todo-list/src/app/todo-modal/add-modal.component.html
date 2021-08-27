@@ -25,26 +25,40 @@
           </span>
         </div>
 
-        <div class="form-group">
-          <label for="who">Whomst</label>
-          <input type="text" name="who" class="form-control" formControlName="who" id="who" placeholder="PERSON">
-          <span class="text-danger"
-              *ngIf="(todoFormControl.who.touched && todoFormControl.who.errors?.required)">
-              WHOMST decrees it thus?
-          </span>
-          <span class="text-danger"
-              *ngIf="(todoFormControl.who.touched && todoFormControl.who.errors?.maxlength)">
-              Max 100 characters - if your name is longer than that you're just silly.
-          </span>
-        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="who">Whomst</label>
 
-        <div class="form-group">
-          <label for="whence">Whence</label>
-          <input type="date" name="whence" class="form-control" formControlName="whence" id="whence" placeholder="01/01/2022">
-          <span class="text-danger"
-              *ngIf="(todoFormControl.whence.touched && todoFormControl.whence.hasError('invalidDate'))">
-              Unless this happens infinitely, please specify whence
-          </span>
+              <mat-form-field>
+                <!-- <mat-label>Whomst</mat-label> -->
+                <mat-select class="form-control" formControlName="who" name="who" id="who" aria-describedby="who">
+                  <mat-option value="Ana">Ana</mat-option>
+                  <mat-option value="David">David</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <!-- <input type="text" name="who" class="form-control" formControlName="who" id="who" placeholder="PERSON"> -->
+              <span class="text-danger"
+                  *ngIf="(todoFormControl.who.touched && todoFormControl.who.errors?.required)">
+                  WHOMST decrees it thus?
+              </span>
+              <!--
+              <span class="text-danger"
+                  *ngIf="(todoFormControl.who.touched && todoFormControl.who.errors?.maxlength)">
+                  Max 100 characters - if your name is longer than that you're just silly.
+              </span> -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="whence">Whence</label>
+              <input type="date" name="whence" class="form-control" formControlName="whence" id="whence" placeholder="01/01/2022">
+              <span class="text-danger"
+                  *ngIf="(todoFormControl.whence.touched && todoFormControl.whence.dirty && todoFormControl.whence.hasError('invalidDate'))">
+                  Unless this happens infinitely, please specify whence
+              </span>
+            </div>
+          </div>
         </div>
 
         <div class="form-group">

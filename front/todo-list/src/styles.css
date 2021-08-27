@@ -95,6 +95,10 @@ body {
   height: 30px;
 }
 
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+   z-index: 99999 !important;
+}
+
 
 .custom-slider .ngx-slider .ngx-slider-bar {
   background: #94C947;

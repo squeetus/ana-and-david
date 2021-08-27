@@ -3,6 +3,7 @@ import { Todo } from '../todo';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from './custom-validators';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'add-modal',
@@ -22,11 +23,14 @@ export class AddModalComponent {
     this.todoForm = this.fb.group({
       id: '',
       what: ['', [Validators.required, Validators.maxLength(255)]],
-      category: ['', [Validators.required, Validators.maxLength(1)]],
-      who: ['', [Validators.required, Validators.maxLength(100)]],
-      whence: ['', [Validators.required, CustomValidators.todoDate]],
+      category: ['', [Validators.required, Validators.maxLength(100)]],
+      who: ['', [Validators.required]],
+      whence: [null, [CustomValidators.todoDate]],
       done: ['N', [Validators.required, Validators.maxLength(1), CustomValidators.yOrN]]
     });
+
+    this.todoForm.get('who')?.setValue("Ana");
+
   }
 
   // reset the reactive form
