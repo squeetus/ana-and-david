@@ -65,7 +65,15 @@ export class AppComponent {
       this.todoService.getTodos().subscribe(
         (res: Todo[]) => {
           this.allTodos = res;
+
+          for (const t of this.allTodos) {
+            t.created = t.created.replace(' ', 'T');
+            t.whence = t.whence.replace(' ', 'T');
+          }
+
           this.filteredTodos = this.allTodos;
+
+
 
           // bind song data and sorting to the mat-table dataSource
           this.dataSource.data = this.filteredTodos;
