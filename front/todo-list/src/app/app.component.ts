@@ -67,8 +67,8 @@ export class AppComponent {
           this.allTodos = res;
 
           for (const t of this.allTodos) {
-            t.created = t.created.replace(' ', 'T');
-            t.whence = t.whence.replace(' ', 'T');
+            if(t.created) t.created = t.created.replace(' ', 'T');
+            if(t.whence) t.whence = t.whence.replace(' ', 'T');
           }
 
           this.filteredTodos = this.allTodos;
